@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 # User Devise for authentication
 gem 'devise'
 
+gem 'simple_form'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
