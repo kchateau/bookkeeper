@@ -5,6 +5,7 @@
     <%= f.input :isbn %>
     <%= f.association :genres %>
     <%= f.association :authors %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
     <%= f.button :submit, class: 'btn btn-secondary' %>
   <% end %>
 </div>
