@@ -1,0 +1,11 @@
+<div class='container'>
+  <%= simple_form_for @book do |f| %>
+    <%= f.input :title %>
+    <%= f.input :description %>
+    <%= f.input :isbn %>
+    <%= f.association :genres %>
+    <%= f.association :authors %>
+    <%= f.button :submit, class: 'btn btn-secondary' %>
+  <% end %>
+</div>
+
