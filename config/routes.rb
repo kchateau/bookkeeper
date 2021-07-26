@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resource :books, only: [:new, :create] 
+  resource :books, only: [:new, :create, :destroy] 
 end

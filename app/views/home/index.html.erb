@@ -19,6 +19,9 @@
             <% end %>
             </ul>
           <% end %>
+          <div class='card-footer'>
+            <%= button_to 'delete', books_path(:id => Book.find_by(id: book.book_id).id), :method => :delete %>
+          </div>
         </div>
       </div>
     <% end %>

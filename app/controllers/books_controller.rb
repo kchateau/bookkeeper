@@ -10,6 +10,14 @@ class BooksController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    book = Book.find_by(id: params['id'])
+    UserRead.find_by(user: current_user, book: book).destroy
+    book.destroy
+    current_user.reload
+    redirect_to root_path
+  end
+
   private
 
   def book_params
