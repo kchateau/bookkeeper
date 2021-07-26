@@ -1,0 +1,27 @@
+<% my_books = UserRead.where(user: current_user) %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div class='container'>
+  <p class='text-center h1'>My Books</p>
+
+  <div class='row'>
+    <% my_books.each do |book| %>
+      <div class='col'>
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= Book.find_by(id: book.book_id).title %></h5>
+            <p class="card-text"><%= Book.find_by(id: book.book_id).description %></p>
+          </div>
+          <% if Book.find_by(id: book.book_id).genres.count > 0 %>
+            <ul class="list-group list-group-flush">
+              <% Book.find_by(id: book.book_id).genres.each do |genre| %>
+                <li class="list-group-item"><%= genre.name %></li>
+            <% end %>
+            </ul>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+</div>
