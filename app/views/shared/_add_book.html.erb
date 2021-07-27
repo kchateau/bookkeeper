@@ -3,7 +3,7 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :isbn %>
-    <%= f.association :genres %>
+    <%= f.association :genres, as: :check_boxes %>
     <%= f.association :authors %>
     <%= f.button :submit, class: 'btn btn-secondary' %>
   <% end %>
