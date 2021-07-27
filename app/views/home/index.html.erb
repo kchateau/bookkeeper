@@ -26,7 +26,9 @@
             </ul>
           <% end %>
           <div class='card-footer'>
-            <%= button_to 'delete', books_path(:id => Book.find_by(id: book.book_id).id), :method => :delete %>
+            <%= link_to books_path(:id => Book.find_by(id: book.book_id).id), :method => :delete do %>
+              <span class='glyphicon glyphicon-trash'></span>
+            <% end %>
           </div>
         </div>
       </div>
