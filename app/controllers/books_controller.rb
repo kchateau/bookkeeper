@@ -25,6 +25,6 @@ class BooksController < ApplicationController
   end
 
   def create_user_read(book)
-    UserRead.create(user: current_user, book: book, rating: 5)
+    UserRead.create(user: current_user, book: book, rating: params['book']['rating'])
   end
 end

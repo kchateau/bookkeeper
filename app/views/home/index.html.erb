@@ -12,6 +12,12 @@
             <h5 class="card-title"><%= Book.find_by(id: book.book_id).title %></h5>
             <p class="card-text"><%= Book.find_by(id: book.book_id).description %></p>
           </div>
+          <ul>
+            Rating:
+            <% book&.rating.times do %>
+              <span class='glyphicon glyphicon-star'></span>
+            <% end %>
+          </ul>
           <% if Book.find_by(id: book.book_id).genres.count > 0 %>
             <ul class="list-group list-group-flush">
               <% Book.find_by(id: book.book_id).genres.each do |genre| %>

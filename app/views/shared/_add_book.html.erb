@@ -3,6 +3,8 @@
     <%= f.input :title %>
     <%= f.input :description %>
     <%= f.input :isbn %>
+    <%= f.label 'Rating (1-5)' %>
+    <%= f.number_field :rating %>
     <%= f.association :genres, as: :check_boxes %>
     <%= f.association :authors %>
     <%= f.button :submit, class: 'btn btn-secondary' %>
