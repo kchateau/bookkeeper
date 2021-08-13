@@ -2,33 +2,33 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <div class='container'>
-  <p class='text-center text-secondary h1'>My Books</p>
+  <p class='text-center  h1' style="color:#694a38;">My Books</p>
 
   <% my_books.each_slice(5) do |book_slice| %>
     <div class='row mt-5'>
-      <% book_slice.each do |book| %>
+      <% book_slice.each do |user_read| %>
+        <% book = Book.find_by(id: user_read.book_id) %>
         <div class='col'>
           <div class="card border-secondary" style="width: 18rem;">
+            <img class="card-img-top" src="http://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="Card image cap">
             <div class="card-body" style="text-align: center">
-              <h5 class="card-title"><%= Book.find_by(id: book.book_id).title %></h5>
-              <p class="card-text"><%= Book.find_by(id: book.book_id).description %></p>
+              <h5 class="card-title"><%= book.title %></h5>
+              <p class="card-text"><%= book.description %></p>
             </div>
             <div style="text-align: center">
-            <% if Book.find_by(id: book.book_id).genres.count > 0 %>
+            <% if book.genres.count > 0 %>
               <ul class="list-group list-group-flush" style="margin-bottom: 0">
-                <% Book.find_by(id: book.book_id).genres.each do |genre| %>
+                <% book.genres.each do |genre| %>
                   <li class="list-group-item" style="padding-bottom: 0; padding-top: 0"><%= genre.name %></li>
               <% end %>
               </ul>
             <% end %>
-              <% book&.rating.times do %>
+              <% user_read&.rating.times do %>
                 <span class='glyphicon glyphicon-star'></span>
               <% end %>
             </div>
             <div class='card-footer' style="text-align: center">
-              <%= link_to books_path(:id => Book.find_by(id: book.book_id).id), :method => :delete do %>
-                <span class='glyphicon glyphicon-trash'></span>
-              <% end %>
+              <%= button_to 'delete', books_path(:id => book.id), :method => :delete %>
             </div>
           </div>
         </div>
