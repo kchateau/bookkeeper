@@ -8,6 +8,8 @@ gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
 
 gem 'pry', '~> 0.13.1'
 
+gem 'googlebooks'
+
 # Use Postgres for database
 gem 'pg'
 # Use Puma as the app server
