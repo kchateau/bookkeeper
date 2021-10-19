@@ -4,8 +4,26 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
+  def search
+    @book = Book.new
+  end
+
+  def search_results
+    @books = GoogleBooks.search(book_params['title'], {:count => 10})
+  end
+
+  def shelf
+    binding.pry
+  end
+
   def create
-    @book = Book.create(book_params)
+    #@book = Book.create(book_params)
+    create_authors(params['authors'])
+    @book = Book.find_or_create_by(
+      title: params['title'],
+      isbn: params['isbn'],
+      image_link: params['image_link']
+    )
     create_user_read(@book)
     redirect_to root_path
   end
@@ -25,6 +43,12 @@ class BooksController < ApplicationController
   end
 
   def create_user_read(book)
-    UserRead.create(user: current_user, book: book, rating: params['book']['rating'])
+    UserRead.create(user: current_user, book: book, rating: 5)
+  end
+
+  def create_authors(names)
+    Array(names).each do |name|
+      Author.find_or_create_by(name: name)
+    end
   end
 end

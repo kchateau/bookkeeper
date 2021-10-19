@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<div class='container'>
+  <p class='text-center  h1' style="color:#694a38;">Search Results</p>
+  <div class="card-group">
+    <div class="row">
+      <% @books.each do |book| %>
+        <div class="card m-4" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="<%= book.image_link %>" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= book.title %></h5>
+                <p class="card-text"><small class="text-muted">By: <%= book.authors %></small></p>
+                <p class="card-text"><%=  book.description.truncate(300) %></p>
+              </div>
+              <div class="card-footer">
+                <p class="card-text">Average rating: <%= book.average_rating %>/5</p>
+                <p><%= book.isbn %></p>
+                <%= button_to "Add",
+                  {
+                    :controller => :books,
+                    :action => "create",
+                    :title => book.title,
+                    :authors => book.authors,
+                    :isbn => book.isbn,
+                    :image_link => book.image_link
+                  },
+                   :method => :post %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<div>
