@@ -10,7 +10,7 @@
         <% book = Book.find_by(id: user_read.book_id) %>
         <div class='col'>
           <div class="card border-secondary" style="width: 18rem;">
-            <img class="card-img-top" src="http://covers.openlibrary.org/b/isbn/<%= book.isbn %>-M.jpg" alt="Card image cap">
+            <img class="card-img-top" src="<%=  book.image_link %>" alt="Card image cap">
             <div class="card-body" style="text-align: center">
               <h5 class="card-title"><%= book.title %></h5>
               <p class="card-text"><%= book.description %></p>
@@ -23,7 +23,7 @@
               <% end %>
               </ul>
             <% end %>
-              <% user_read&.rating.times do %>
+              <% user_read&.rating&.times do %>
                 <span class='glyphicon glyphicon-star'></span>
               <% end %>
             </div>
